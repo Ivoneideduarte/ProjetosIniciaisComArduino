@@ -1,0 +1,50 @@
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(7,6,5,4,3,2);
+
+void setup() 
+{
+  lcd.begin(16,2);
+  lcd.clear(); //Limpa a tela
+}
+
+void loop() 
+{
+  lcd.setCursor(3,0); //Coluna , Linha
+  lcd.print("MECATRONICA");
+  lcd.setCursor(1,1); //Coluna , Linha
+  lcd.print("PROF. IVONEIDE");
+  delay(3000);
+
+  for(int pos=0; pos<3; pos++)
+  {
+    lcd.scrollDisplayLeft(); //Desloca para esquerda
+    delay(100);
+  }
+  for(int pos=0; pos<6; pos++)
+  {
+    lcd.scrollDisplayRight(); //Desloca para direita
+    delay(100);
+  }
+  for(int pos=0; pos<3; pos++)
+  {
+    lcd.scrollDisplayLeft(); //Desloca para esquerda
+    delay(100);
+  }
+  delay(100);
+
+  lcd.noDisplay(); //Desliga o texto
+  delay(500);
+  lcd.display();
+  delay(500);
+
+  lcd.noDisplay(); //Desliga o texto
+  delay(500);
+  lcd.display();
+  delay(500);
+  
+  lcd.noDisplay(); //Desliga o texto
+  delay(500);
+  lcd.display();
+  delay(500);  
+}

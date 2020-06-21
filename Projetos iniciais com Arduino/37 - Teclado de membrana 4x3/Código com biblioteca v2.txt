@@ -1,0 +1,41 @@
+#include <Key.h>
+#include <Keypad.h>
+
+#define linha_1 6
+#define linha_2 7
+#define linha_3 8
+#define linha_4 9
+
+#define coluna_1 10
+#define coluna_2 11
+#define coluna_3 12
+
+#define linhas 4
+#define colunas 3
+char mapaTeclas[4][3]={
+                        {'1','2','3'},
+                        {'4','5','6'},
+                        {'7','8','9'},
+                        {'*','0','#'}
+                       };
+byte pinos_linha[linhas] = {linha_1, linha_2, linha_3, linha_4};
+byte pinos_coluna[colunas] = {coluna_1, coluna_2, coluna_3};
+
+Keypad teclado = Keypad(makeKeymap(mapaTeclas), pinos_linha, pinos_coluna, linhas, colunas);
+//Keypad keypad2 = Keypad( makeKeymap(keys2), rowPins2, colPins2, ROWS2, COLS2 );
+
+void setup() 
+{
+  Serial.begin(9600);
+}
+
+void loop() 
+{
+  
+  char tecla = teclado.getKey();
+  if(tecla != NO_KEY)
+  {
+    Serial.println(tecla);
+  }
+  
+}

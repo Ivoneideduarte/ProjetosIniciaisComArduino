@@ -1,0 +1,26 @@
+int portas_led[4]={2,3,4,5}; //Portas de conexão digital
+
+void setup() {
+  for(int pinos_led=0;pinos_led<4;pinos_led++){
+    pinMode(portas_led[pinos_led],OUTPUT);
+  }
+  Serial.begin(9600); //Inicializa a porta serial
+}
+
+void loop() {
+  
+  char c=Serial.read();
+  
+  if(c=='A'){digitalWrite(portas_led[0],HIGH);} // Posição 0 = portas_led[0]
+  if(c=='a'){digitalWrite(portas_led[0],LOW);}
+
+  if(c=='B'){digitalWrite(portas_led[1],HIGH);} // Posição 1 = portas_led[1]
+  if(c=='b'){digitalWrite(portas_led[1],LOW);}
+
+  if(c=='C'){digitalWrite(portas_led[2],HIGH);} // Posição 2 = portas_led[2]
+  if(c=='c'){digitalWrite(portas_led[2],LOW);}
+
+  if(c=='D'){digitalWrite(portas_led[3],HIGH);} // Posição 3 = portas_led[3]
+  if(c=='d'){digitalWrite(portas_led[3],LOW);}
+  
+}

@@ -1,0 +1,110 @@
+#define ledR 2
+#define ledG 3
+#define ledB 4
+#define btn  7
+#define maximo 7 //Cores configuradas
+
+int btn_Clicado=0;
+int btn_Liberado=0;
+int ciclo=0;
+
+void vermelho()
+{
+  digitalWrite(ledR, HIGH);
+  digitalWrite(ledG, LOW);
+  digitalWrite(ledB, LOW);
+}
+
+void verde()
+{
+  digitalWrite(ledR, LOW);
+  digitalWrite(ledG, HIGH);
+  digitalWrite(ledB, LOW);
+}
+void azul()
+{
+  digitalWrite(ledR, LOW);
+  digitalWrite(ledG, LOW);
+  digitalWrite(ledB, HIGH);
+}
+
+void amarelo()
+{
+  digitalWrite(ledR, HIGH);
+  digitalWrite(ledG, HIGH);
+  digitalWrite(ledB, LOW);
+}
+
+void lilas()
+{
+  digitalWrite(ledR, HIGH);
+  digitalWrite(ledG, LOW);
+  digitalWrite(ledB, HIGH);
+}
+
+void ciano()
+{
+  digitalWrite(ledR, LOW);
+  digitalWrite(ledG, HIGH);
+  digitalWrite(ledB, HIGH);
+}
+void branco()
+{
+  digitalWrite(ledR, HIGH);
+  digitalWrite(ledG, HIGH);
+  digitalWrite(ledB, HIGH);
+}
+
+void setup() {
+  pinMode(ledR, OUTPUT);
+  pinMode(ledG, OUTPUT);
+  pinMode(ledB, OUTPUT);
+  pinMode(btn, INPUT);
+}
+
+void troca_Led(){
+
+  if(ciclo == 0){
+     vermelho();
+  }
+  else if (ciclo == 1){
+     verde();
+  }
+  else if (ciclo == 2){
+     azul();
+  }
+  else if (ciclo == 3){
+    amarelo();
+  }
+  else if (ciclo == 4){
+    lilas();
+  }
+  else if (ciclo == 5){
+    ciano();
+  }
+  else if (ciclo == 6){
+    branco();
+  }
+  ciclo++;
+  if(ciclo > maximo - 1){
+     ciclo=0;
+  }
+}
+
+void verifica_Btn(){
+  if(digitalRead(btn) == HIGH){
+     btn_Clicado = 1;
+     btn_Liberado = 0;
+  } else {
+     btn_Liberado = 1;
+  }
+  if((btn_Clicado == 1) && (btn_Liberado == 1)){
+     btn_Clicado = 0;
+     btn_Liberado = 0;
+     troca_Led();
+  }
+}
+
+void loop() {
+  verifica_Btn();
+}

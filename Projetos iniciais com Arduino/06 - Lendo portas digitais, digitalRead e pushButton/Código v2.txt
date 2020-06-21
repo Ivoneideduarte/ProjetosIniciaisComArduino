@@ -1,0 +1,49 @@
+#define led 4
+#define botao 3
+int botaoClicado = 0;
+int botaoLiberado = 0;
+
+//Função para trocar o estado do led
+void trocaLed()
+{
+  if(digitalRead(led) == HIGH)
+  {
+    digitalWrite(led, LOW);
+  }
+  else
+  {
+    digitalWrite(led, HIGH);
+  }
+}
+
+//Função para controlar o estado do botão
+void keyup()
+{
+  if((botaoClicado == 1) and (botaoLiberado == 1))
+  {
+    botaoClicado = 0;
+    botaoLiberado = 0;
+    trocaLed();
+  }
+}
+
+void setup()
+{
+  pinMode(led, OUTPUT);  // Led configurado como saída de dados
+  pinMode(botao, INPUT); // Botão configurado como entrada de dados
+}
+
+void loop()
+{
+  //Ao pressionar o botão, o led acende e permanece aceso e ao clicar novamente, ele será apagado.
+  if (digitalRead(botao) == HIGH)
+  { // Estou lendo o estado do botão, caso esteja pressionado irá ligar o led
+    botaoClicado = 1;
+    botaoLiberado = 0;
+  }
+  else
+  { //Caso o botão não esteja pressionado, o led permanecerá desligado
+    botaoLiberado = 1;
+  }
+  keyup();
+}

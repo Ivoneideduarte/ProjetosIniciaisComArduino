@@ -1,0 +1,68 @@
+#define linha_1 6
+#define linha_2 7
+#define linha_3 8
+#define linha_4 9
+
+#define coluna_1 10
+#define coluna_2 11
+#define coluna_3 12
+
+char mapaTeclas[4][3]={
+                        {'1','2','3'},
+                        {'4','5','6'},
+                        {'7','8','9'},
+                        {'*','0','#'}
+                       };
+
+void setup() 
+{
+  //pinos linha - 6,7,8,9
+  pinMode(linha_1,OUTPUT);
+  pinMode(linha_2,OUTPUT);
+  pinMode(linha_3,OUTPUT);
+  pinMode(linha_4,OUTPUT);
+
+  //pinos colunas 10,11,12
+  pinMode(coluna_1,INPUT_PULLUP);
+  pinMode(coluna_2,INPUT_PULLUP);
+  pinMode(coluna_3,INPUT_PULLUP);
+  
+  Serial.begin(9600);
+}
+
+void loop() 
+{
+  for(int porta=6;porta<10;porta++)
+  {
+    digitalWrite(linha_1,HIGH);
+    digitalWrite(linha_2,HIGH);
+    digitalWrite(linha_3,HIGH);
+    digitalWrite(linha_4,HIGH);
+    digitalWrite(porta,LOW);
+
+    if(digitalRead(coluna_1)==LOW)
+    {
+      imp(porta-6,0);
+      while(digitalRead(coluna_1)==LOW){}
+    }
+
+    if(digitalRead(coluna_2)==LOW)
+    {
+      imp(porta-6,1);
+      while(digitalRead(coluna_2)==LOW){}
+    }
+
+    if(digitalRead(coluna_3)==LOW)
+    {
+      imp(porta-6,2);
+      while(digitalRead(coluna_3)==LOW){}
+    }
+   
+  }
+}
+
+void imp(int x, int y)
+{
+  Serial.print(mapaTeclas[x][y]);
+  delay(10);
+}

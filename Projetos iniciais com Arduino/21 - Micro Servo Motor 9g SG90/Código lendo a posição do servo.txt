@@ -1,0 +1,39 @@
+#include <Servo.h>
+
+#define pot A0
+
+Servo s1; //Servo
+
+int angS1; //Angulo do servo
+int a;
+
+void setup() 
+{
+  s1.attach(2); //Porta de controle do servo conectado
+  angS1=0; //O servo irá inicializar no angulo 0
+  s1.write(angS1); //Definição do angulo para o servo
+  pinMode(pot, INPUT);
+
+  Serial.begin(9600);
+}
+
+void loop() 
+{
+ angS1 = 0;
+ s1.write(angS1);
+ a=s1.read(); //Leitura da posição do servo
+ Serial.println(a);
+ delay(3000);
+
+ angS1 = 90;
+ s1.write(angS1);
+ a=s1.read(); //Leitura da posição do servo
+ Serial.println(a);
+ delay(3000);
+
+ angS1 = 180;
+ s1.write(angS1);
+ a=s1.read(); //Leitura da posição do servo
+ Serial.println(a);
+ delay(3000);
+}

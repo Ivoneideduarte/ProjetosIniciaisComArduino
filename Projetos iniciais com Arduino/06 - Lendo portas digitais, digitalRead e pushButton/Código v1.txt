@@ -1,0 +1,21 @@
+#define led 4
+#define botao 3
+
+void setup()
+{
+  pinMode(led, OUTPUT);  // Led configurado como saída de dados
+  pinMode(botao, INPUT); // Botão configurado como entrada de dados
+}
+
+void loop()
+{
+  //Ao pressionar o botão é possível acender o led e ao soltar, apagá-lo.
+  if (digitalRead(botao) == HIGH)
+  { // Estou lendo o estado do botão, caso esteja pressionado irá ligar o led
+    digitalWrite(led, HIGH);
+  }
+  else
+  { //Caso o botão não esteja pressionado, o led permanecerá desligado
+    digitalWrite(led, LOW);
+  }
+}

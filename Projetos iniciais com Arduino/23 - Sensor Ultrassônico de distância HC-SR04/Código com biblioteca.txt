@@ -1,0 +1,26 @@
+#include <HCSR04.h>
+
+#define pinTrigger 4
+#define pinEcho 5
+
+UltraSonicDistanceSensor distanceSensor(pinTrigger, pinEcho);  
+  
+float  distancia_cm, distancia_m;
+
+void setup () 
+{
+    Serial.begin(9600);  
+}
+
+void loop () 
+{   
+    distancia_cm = distanceSensor.measureDistanceCm(); //Distância em cm
+    distancia_m/100;
+    Serial.println("Distância: ");
+    Serial.println(distancia_cm);
+    Serial.println("cm | ");
+    Serial.println(distancia_m);
+    Serial.println("m");
+    Serial.println("-------------------------------");
+    delay(500);
+}

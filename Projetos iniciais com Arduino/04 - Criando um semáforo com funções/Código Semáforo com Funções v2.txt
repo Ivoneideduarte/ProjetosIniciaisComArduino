@@ -1,0 +1,44 @@
+//Para definição das portas é recomendado o #define por não armazenar dados na memória e pelas portas serem valores fixos, diferentemente dos tipos primitivos de variáveis
+#define ledVermelho 10
+#define ledAmarelo 9
+#define ledVerde 7
+
+void setup() 
+{
+  pinMode(ledVermelho, OUTPUT);
+  pinMode(ledAmarelo, OUTPUT);
+  pinMode(ledVerde, OUTPUT);
+}
+
+//Declarando funções
+void vermelho(int tmp)
+{
+  digitalWrite(ledVermelho, HIGH);
+  digitalWrite(ledAmarelo, LOW);
+  digitalWrite(ledVerde, LOW);
+  delay(tmp);
+}
+
+void verde(int tmp)
+{
+  digitalWrite(ledVermelho, LOW);
+  digitalWrite(ledAmarelo, LOW);
+  digitalWrite(ledVerde, HIGH);
+  delay(tmp);
+}
+
+void amarelo(int tmp)
+{
+  digitalWrite(ledVermelho, LOW);
+  digitalWrite(ledAmarelo, HIGH);
+  digitalWrite(ledVerde, LOW);
+  delay(tmp);
+}
+
+void loop() 
+{ 
+  //Chamando a função e determinando o tempo
+  vermelho(2500);
+  verde(2000);
+  amarelo(1500);
+}

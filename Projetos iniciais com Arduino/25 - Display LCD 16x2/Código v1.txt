@@ -1,0 +1,18 @@
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(7,6,5,4,3,2);
+
+void setup() 
+{
+  lcd.begin(16,2);
+  lcd.clear(); //Limpa a tela
+}
+
+void loop() 
+{
+  lcd.setCursor(3,0); //Coluna , Linha
+  lcd.print("MECATRONICA");
+  lcd.setCursor(1,1); //Coluna , Linha
+  lcd.print("PROF. IVONEIDE");
+  delay(3000);
+}
